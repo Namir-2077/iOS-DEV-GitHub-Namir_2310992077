@@ -3,8 +3,26 @@
 
  If an app asks for a user's age, it may be because the app requires a user to be over a certain age to use some of the services it provides. Write a function called `checkAge` that takes one parameter of type `String`. The function should try to convert this parameter into an `Int` value and then check if the user is over 18 years old. If he/she is old enough, print "Welcome!", otherwise print "Sorry, but you aren't old enough to use our app." If the `String` parameter cannot be converted into an `Int` value, print "Sorry, something went wrong. Can you please re-enter your age?" Call the function and pass in `userInputAge` below as the single parameter. Then call the function and pass in a string that can be converted to an integer.
  */
+func checkAge(_ ageString: String) -> Int? {
+    if let age = Int(ageString) {
+        if age > 18 {
+            print("Welcome!")
+        } else {
+            print("Sorry, but you aren't old enough to use our app.")
+        }
+        return age
+    } else {
+        print("Sorry, something went wrong. Can you please re-enter your age?")
+        return nil
+    }
+}
 
 let userInputAge: String = "34e"
+let returnedAge1 = checkAge(userInputAge)
+print("Returned age: \(String(describing: returnedAge1))")
+
+let returnedAge2 = checkAge("25")
+print("Returned age: \(String(describing: returnedAge2))")
 
 //:  Go back and update your function to return the age as an integer. Will your function always return a value? Make sure your return type accurately reflects this. Call the function and print the return value.
 
@@ -13,7 +31,27 @@ let userInputAge: String = "34e"
 var prices = ["Chips": 3.69, "Donuts": 1.89, "Juice": 4.99, "Apple": 0.70, "Banana": 0.53, "Broccoli": 1.99]
 var stock = ["Chips": 4, "Donuts": 0, "Juice": 12, "Apple": 6, "Banana": 6, "Broccoli": 3]
 
+func getPrice(of item: String) -> Double? {
+    if let quantity = stock[item], quantity > 0 {
+        return prices[item]
+    } else {
+        return nil
+    }
+}
 
+let itemName = "Juice"
+if let cost = getPrice(of: itemName) {
+    print("The price of \(itemName) is $\(cost)")
+} else {
+    print("\(itemName) is out of stock or unavailable.")
+}
+
+let unavailableItem = "Donuts"
+if let cost = getPrice(of: unavailableItem) {
+    print("The price of \(unavailableItem) is $\(cost)")
+} else {
+    print("\(unavailableItem) is out of stock or unavailable.")
+}
 /*:
 [Previous](@previous)  |  page 3 of 6  |  [Next: App Exercise - Food Functions](@next)
  */
