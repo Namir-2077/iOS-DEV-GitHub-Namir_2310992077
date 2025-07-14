@@ -38,4 +38,3 @@ func getClientPet(allPets: [Animal]) -> Animal {
 }
 
 let pet = getClientPet(allPets: allPets)
-
