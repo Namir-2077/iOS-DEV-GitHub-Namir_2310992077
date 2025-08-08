@@ -17,6 +17,8 @@ class Shoe: CustomStringConvertible {
 let myShoe = Shoe(color: "black", size: 10, hasLaces: true)
 print(myShoe)
 
+print("*******")
+
 struct Book: CustomStringConvertible {
     var title: String
     var author: String
