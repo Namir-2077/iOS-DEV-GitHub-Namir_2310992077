@@ -1,8 +1,8 @@
 //
 //  Data.swift
-//  Table View
+//  TableViewPractice
 //
-//  Created by Student on 18/08/25.
+//  Created by Student on 21/08/25.
 //
 
 import Foundation
@@ -28,6 +28,5 @@ var emojis: [Emoji] = [
         Emoji(symbol: "📚", name: "Stack of Books", description: "Three colored books stacked on each other.", usage: "homework, studying"),
         Emoji(symbol: "💔", name: "Broken Heart", description: "A red, broken heart.", usage: "extreme sadness"),
         Emoji(symbol: "💤", name: "Snore", description: "Three blue \'z\'s.", usage: "tired, sleepiness"),
-        Emoji(symbol: "🏁", name: "Checkered Flag", description: "A black-and-white checkered flag.", usage: "completion"),
-        Emoji(symbol: "🎬", name: "Film", description: "Let's go watch a film!", usage: "entertainment")
+        Emoji(symbol: "🏁", name: "Checkered Flag", description: "A black-and-white checkered flag.", usage: "completion")
     ]

@@ -1,17 +1,14 @@
 //
 //  EmojiTableViewController.swift
-//  Table View
+//  TableViewPractice
 //
-//  Created by Student on 18/08/25.
+//  Created by Student on 21/08/25.
 //
 
 import UIKit
 
 class EmojiTableViewController: UITableViewController {
 
-    @IBSegueAction func addEditEmoji(_ coder: NSCoder, sender: Any?) -> EditTableViewController? {
-        return <#EditTableViewController(coder: coder)#>
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,34 +16,37 @@ class EmojiTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-           self.navigationItem.leftBarButtonItem = self.editButtonItem
+           self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
-    // MARK: - Table view data source
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return emojis.count
     }
 
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+    
         var content = cell.defaultContentConfiguration()
         
         content.text = "\(emojis[indexPath.row].symbol) - \(emojis[indexPath.row].name)"
         content.secondaryText = "\(emojis[indexPath.row].description)"
         
         cell.contentConfiguration = content
-        
-        cell.showsReorderControl = true
+     
 
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "editSegue", sender: indexPath)
+        print("\(indexPath.row)")
+        print("\(emojis[indexPath.row].symbol)")
     }
 
     /*
@@ -57,32 +57,24 @@ class EmojiTableViewController: UITableViewController {
     }
     */
 
-    
+    /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            
-            emojis.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    
+    */
 
-    
+    /*
+    // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
 
-        let removedEmoji = emojis.remove(at: fromIndexPath.row)
-        emojis.insert(removedEmoji, at: to.row)
-        
     }
-    
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .delete
-    }
-    
+    */
 
     /*
     // Override to support conditional rearranging of the table view.
