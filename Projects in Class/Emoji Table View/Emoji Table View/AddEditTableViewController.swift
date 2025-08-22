@@ -1,19 +1,28 @@
 //
-//  EditTableViewController.swift
-//  Table View
+//  AddEditTableViewController.swift
+//  Emoji Table View
 //
-//  Created by Student on 21/08/25.
+//  Created by student on 21/08/25.
 //
 
 import UIKit
 
-class EditTableViewController: UITableViewController {
-    
+class AddEditTableViewController: UITableViewController {
+
+    @IBOutlet weak var symbolTextField: UITextField!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var usageTextField: UITextField!
+        
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     var emoji: Emoji?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        saveButton.isEnabled = false
+        if let emoji = emoji {
+            updateUI(emoji: emoji)
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -21,26 +30,46 @@ class EditTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    
     init?(coder: NSCoder, emoji: Emoji?) {
         self.emoji = emoji
         super.init(coder: coder)
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError( "init(coder:) has not been implemented")
     }
-
+    
+    func updateUI(emoji: Emoji) {
+        symbolTextField.text = emoji.symbol
+        nameTextField.text = emoji.name
+        descriptionTextField.text = emoji.description
+        usageTextField.text = emoji.usage
+    }
+    
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    @IBAction func textFieldUpdated(_ sender: Any) {
+        guard symbolTextField.text != "" && nameTextField.text != "" && descriptionTextField.text != "" && usageTextField.text != "" else {return}
+            saveButton.isEnabled = true
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    
+    
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        let emoji = Emoji(symbol: symbolTextField.text ?? "", name: nameTextField.text ?? "", description: descriptionTextField.text ?? "", usage: usageTextField.text ?? "")
+        self.emoji = emoji
+        performSegue(withIdentifier: "saveSegue", sender: nil)
     }
+    
+    //    override func numberOfSections(in tableView: UITableView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 0
+//    }
+//
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        // #warning Incomplete implementation, return the number of rows
+//        return 0
+//    }
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

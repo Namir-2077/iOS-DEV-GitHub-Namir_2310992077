@@ -7,32 +7,32 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		3FEBB5742E52E31B007B5B0E /* Table View.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Table View.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		05A5F16A2E56D85000C148C5 /* Emoji Table View.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Emoji Table View.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		3FEBB5862E52E31C007B5B0E /* Exceptions for "Table View" folder in "Table View" target */ = {
+		05A5F17C2E56D85100C148C5 /* Exceptions for "Emoji Table View" folder in "Emoji Table View" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = 3FEBB5732E52E31B007B5B0E /* Table View */;
+			target = 05A5F1692E56D85000C148C5 /* Emoji Table View */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		3FEBB5762E52E31B007B5B0E /* Table View */ = {
+		05A5F16C2E56D85000C148C5 /* Emoji Table View */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				3FEBB5862E52E31C007B5B0E /* Exceptions for "Table View" folder in "Table View" target */,
+				05A5F17C2E56D85100C148C5 /* Exceptions for "Emoji Table View" folder in "Emoji Table View" target */,
 			);
-			path = "Table View";
+			path = "Emoji Table View";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		3FEBB5712E52E31B007B5B0E /* Frameworks */ = {
+		05A5F1672E56D85000C148C5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -42,18 +42,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3FEBB56B2E52E31B007B5B0E = {
+		05A5F1612E56D85000C148C5 = {
 			isa = PBXGroup;
 			children = (
-				3FEBB5762E52E31B007B5B0E /* Table View */,
-				3FEBB5752E52E31B007B5B0E /* Products */,
+				05A5F16C2E56D85000C148C5 /* Emoji Table View */,
+				05A5F16B2E56D85000C148C5 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		3FEBB5752E52E31B007B5B0E /* Products */ = {
+		05A5F16B2E56D85000C148C5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3FEBB5742E52E31B007B5B0E /* Table View.app */,
+				05A5F16A2E56D85000C148C5 /* Emoji Table View.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,64 +61,64 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3FEBB5732E52E31B007B5B0E /* Table View */ = {
+		05A5F1692E56D85000C148C5 /* Emoji Table View */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3FEBB5872E52E31C007B5B0E /* Build configuration list for PBXNativeTarget "Table View" */;
+			buildConfigurationList = 05A5F17D2E56D85100C148C5 /* Build configuration list for PBXNativeTarget "Emoji Table View" */;
 			buildPhases = (
-				3FEBB5702E52E31B007B5B0E /* Sources */,
-				3FEBB5712E52E31B007B5B0E /* Frameworks */,
-				3FEBB5722E52E31B007B5B0E /* Resources */,
+				05A5F1662E56D85000C148C5 /* Sources */,
+				05A5F1672E56D85000C148C5 /* Frameworks */,
+				05A5F1682E56D85000C148C5 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				3FEBB5762E52E31B007B5B0E /* Table View */,
+				05A5F16C2E56D85000C148C5 /* Emoji Table View */,
 			);
-			name = "Table View";
+			name = "Emoji Table View";
 			packageProductDependencies = (
 			);
-			productName = "Table View";
-			productReference = 3FEBB5742E52E31B007B5B0E /* Table View.app */;
+			productName = "Emoji Table View";
+			productReference = 05A5F16A2E56D85000C148C5 /* Emoji Table View.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		3FEBB56C2E52E31B007B5B0E /* Project object */ = {
+		05A5F1622E56D85000C148C5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1640;
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
-					3FEBB5732E52E31B007B5B0E = {
+					05A5F1692E56D85000C148C5 = {
 						CreatedOnToolsVersion = 16.4;
 					};
 				};
 			};
-			buildConfigurationList = 3FEBB56F2E52E31B007B5B0E /* Build configuration list for PBXProject "Table View" */;
+			buildConfigurationList = 05A5F1652E56D85000C148C5 /* Build configuration list for PBXProject "Emoji Table View" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 3FEBB56B2E52E31B007B5B0E;
+			mainGroup = 05A5F1612E56D85000C148C5;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 3FEBB5752E52E31B007B5B0E /* Products */;
+			productRefGroup = 05A5F16B2E56D85000C148C5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3FEBB5732E52E31B007B5B0E /* Table View */,
+				05A5F1692E56D85000C148C5 /* Emoji Table View */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		3FEBB5722E52E31B007B5B0E /* Resources */ = {
+		05A5F1682E56D85000C148C5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -128,7 +128,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3FEBB5702E52E31B007B5B0E /* Sources */ = {
+		05A5F1662E56D85000C148C5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -138,7 +138,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		3FEBB5882E52E31C007B5B0E /* Debug */ = {
+		05A5F17E2E56D85100C148C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -146,7 +146,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Table View/Info.plist";
+				INFOPLIST_FILE = "Emoji Table View/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -157,7 +157,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "namir.Table-View";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gupil.Emoji-Table-View";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -165,7 +165,7 @@
 			};
 			name = Debug;
 		};
-		3FEBB5892E52E31C007B5B0E /* Release */ = {
+		05A5F17F2E56D85100C148C5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -173,7 +173,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Table View/Info.plist";
+				INFOPLIST_FILE = "Emoji Table View/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -184,7 +184,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "namir.Table-View";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gupil.Emoji-Table-View";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -192,7 +192,7 @@
 			};
 			name = Release;
 		};
-		3FEBB58A2E52E31C007B5B0E /* Debug */ = {
+		05A5F1802E56D85100C148C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -255,7 +255,7 @@
 			};
 			name = Debug;
 		};
-		3FEBB58B2E52E31C007B5B0E /* Release */ = {
+		05A5F1812E56D85100C148C5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -314,25 +314,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3FEBB56F2E52E31B007B5B0E /* Build configuration list for PBXProject "Table View" */ = {
+		05A5F1652E56D85000C148C5 /* Build configuration list for PBXProject "Emoji Table View" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3FEBB58A2E52E31C007B5B0E /* Debug */,
-				3FEBB58B2E52E31C007B5B0E /* Release */,
+				05A5F1802E56D85100C148C5 /* Debug */,
+				05A5F1812E56D85100C148C5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3FEBB5872E52E31C007B5B0E /* Build configuration list for PBXNativeTarget "Table View" */ = {
+		05A5F17D2E56D85100C148C5 /* Build configuration list for PBXNativeTarget "Emoji Table View" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3FEBB5882E52E31C007B5B0E /* Debug */,
-				3FEBB5892E52E31C007B5B0E /* Release */,
+				05A5F17E2E56D85100C148C5 /* Debug */,
+				05A5F17F2E56D85100C148C5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 3FEBB56C2E52E31B007B5B0E /* Project object */;
+	rootObject = 05A5F1622E56D85000C148C5 /* Project object */;
 }

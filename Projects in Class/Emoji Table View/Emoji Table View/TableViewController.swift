@@ -1,17 +1,21 @@
 //
-//  EmojiTableViewController.swift
-//  Table View
+//  TableViewController.swift
+//  Emoji Table View
 //
-//  Created by Student on 18/08/25.
+//  Created by student on 21/08/25.
 //
 
 import UIKit
 
-class EmojiTableViewController: UITableViewController {
+class TableViewController: UITableViewController {
 
-    @IBSegueAction func addEditEmoji(_ coder: NSCoder, sender: Any?) -> EditTableViewController? {
-        return <#EditTableViewController(coder: coder)#>
+    @IBSegueAction func addEditEmoji(_ coder: NSCoder, sender: Any?) -> AddEditTableViewController? {
+        guard let indexPath = sender as? IndexPath else {
+            return AddEditTableViewController(coder: coder, emoji: nil)
+        }
+        return AddEditTableViewController(coder: coder, emoji: emojis[indexPath.row])
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,10 +23,15 @@ class EmojiTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-           self.navigationItem.leftBarButtonItem = self.editButtonItem
+         self.navigationItem.leftBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
+
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 0
+//    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -41,13 +50,19 @@ class EmojiTableViewController: UITableViewController {
         cell.contentConfiguration = content
         
         cell.showsReorderControl = true
+        
+        // Configure the cell...
 
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+//        print("\(indexPath.row)")
+//        print("\(emojis[indexPath.row].symbol)")
         performSegue(withIdentifier: "editSegue", sender: indexPath)
     }
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -62,7 +77,6 @@ class EmojiTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            
             emojis.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
@@ -72,18 +86,28 @@ class EmojiTableViewController: UITableViewController {
     
 
     
+    // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
         let removedEmoji = emojis.remove(at: fromIndexPath.row)
         emojis.insert(removedEmoji, at: to.row)
-        
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
-    
 
+    @IBAction func unwindToEmojiTVC(segue: UIStoryboardSegue) {
+        guard segue.identifier == "saveSegue", let addEditTVC = segue.source as? AddEditTableViewController, let emoji = addEditTVC.emoji else { return }
+        guard let selectedIndexPath = tableView.indexPathForSelectedRow else {
+            emojis.append(emoji)
+            let indexPath = IndexPath(row: emojis.count - 1, section: 0)
+            tableView.insertRows(at: [indexPath], with: .fade)
+        return }
+        
+        emojis[selectedIndexPath.row] = emoji
+        tableView.reloadRows(at: [selectedIndexPath], with: .fade)
+    }
+    
     /*
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {

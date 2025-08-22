@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  Table View
+//  Emoji Table View
 //
-//  Created by Student on 18/08/25.
+//  Created by student on 21/08/25.
 //
 
 import UIKit
