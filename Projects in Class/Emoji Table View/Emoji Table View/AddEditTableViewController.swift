@@ -21,8 +21,13 @@ class AddEditTableViewController: UITableViewController {
         super.viewDidLoad()
         saveButton.isEnabled = false
         if let emoji = emoji {
-            updateUI(emoji: emoji)
+            symbolTextField.text = emoji.symbol
+            nameTextField.text = emoji.name
+            descriptionTextField.text = emoji.description
+            usageTextField.text = emoji.usage
         }
+        
+        updateSaveButtonState()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
