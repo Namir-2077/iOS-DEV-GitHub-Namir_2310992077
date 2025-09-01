@@ -4,8 +4,6 @@
 <dict>
 	<key>NSCameraUsageDescription</key>
 	<string>To share photos</string>
-	<key>CFBundleIdentifier</key>
-	<string></string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
