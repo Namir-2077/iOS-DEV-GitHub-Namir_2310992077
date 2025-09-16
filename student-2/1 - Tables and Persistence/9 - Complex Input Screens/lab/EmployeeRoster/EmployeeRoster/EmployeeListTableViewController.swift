@@ -1,69 +1,67 @@
 
 import UIKit
 
-class EmployeeListTableViewController: UITableViewController, EmployeeDetailTableViewControllerDelegate {
+class EmployeeListTableViewController: UITableViewController {
+
+    struct PropertyKeys {
+        static let employeeCellIdentifier = "EmployeeCell"
+        static let addEmployeeSegueIdentifier = "AddEmployeeSegue"
+        static let editEmployeeSegueIdentifier = "EditEmployeeSegue"
+    }
     
     var employees: [Employee] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
     }
-        
-    // MARK: - Table view data source
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
+    // MARK: - Table view data source
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return employees.count
     }
+
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EmployeeCell", for: indexPath)
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: PropertyKeys.employeeCellIdentifier, for: indexPath)
+
         let employee = employees[indexPath.row]
-        
-        var content = cell.defaultContentConfiguration()
-        content.text = employee.name
-        content.secondaryText = employee.employeeType.description
-        cell.contentConfiguration = content
-        
+        cell.textLabel?.text = employee.name
+        cell.detailTextLabel?.text = employee.employeeType.description()
+
         return cell
     }
-    
+
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             employees.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
+
     
     // MARK: - Navigation
-    
-    @IBSegueAction func showEmployeeDetail(_ coder: NSCoder, sender: Any?) -> EmployeeDetailTableViewController? {
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let employeeDetailTableViewController = segue.destination as? EmployeeDetailTableViewController else { return }
         
-        let detailViewController = EmployeeDetailTableViewController(coder: coder)
-        detailViewController?.delegate = self
-        
-        guard
-            let cell = sender as? UITableViewCell,
-            let indexPath = tableView.indexPath(for: cell)
-        else {
-            return detailViewController
+        if let indexPath = tableView.indexPathForSelectedRow,
+            segue.identifier == PropertyKeys.editEmployeeSegueIdentifier {
+            employeeDetailTableViewController.employee = employees[indexPath.row]
         }
-        
-        let employee = employees[indexPath.row]
-        detailViewController?.employee = employee
-        
-        return detailViewController
     }
     
-    @IBAction func unwindToEmployeeList(segue: UIStoryboardSegue) {
-        tableView.reloadData()
-    }
-    
-    // MARK: - EmployeeDetailTableViewControllerDelegate
-    
-    func employeeDetailTableViewController(_ controller: EmployeeDetailTableViewController, didSave employee: Employee) {
+    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+        guard let employeeDetailTableViewController = segue.source as? EmployeeDetailTableViewController,
+            let employee = employeeDetailTableViewController.employee else { return }
         
         if let indexPath = tableView.indexPathForSelectedRow {
             employees.remove(at: indexPath.row)
@@ -71,9 +69,6 @@ class EmployeeListTableViewController: UITableViewController, EmployeeDetailTabl
         } else {
             employees.append(employee)
         }
-        
-        tableView.reloadData()
-        dismiss(animated: true, completion: nil)
     }
-}
 
+}

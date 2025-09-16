@@ -1,25 +1,51 @@
 
 import UIKit
 
-protocol EmployeeDetailTableViewControllerDelegate: AnyObject {
-    func employeeDetailTableViewController(_ controller: EmployeeDetailTableViewController, didSave employee: Employee)
-}
+class EmployeeDetailTableViewController: UITableViewController, UITextFieldDelegate, EmployeeTypeDelegate {
 
-class EmployeeDetailTableViewController: UITableViewController, UITextFieldDelegate {
-
-    @IBOutlet var nameTextField: UITextField!
-    @IBOutlet var dobLabel: UILabel!
-    @IBOutlet var employeeTypeLabel: UILabel!
-    @IBOutlet var saveBarButtonItem: UIBarButtonItem!
+    struct PropertyKeys {
+        static let unwindToListIndentifier = "UnwindToListSegue"
+    }
     
-    weak var delegate: EmployeeDetailTableViewControllerDelegate?
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var dobLabel: UILabel!
+    @IBOutlet weak var dobDatePicker: UIDatePicker!
+    @IBOutlet weak var employeeTypeLabel: UILabel!
+    
     var employee: Employee?
+    var employeeType: EmployeeType?
+    
+    var isEditingBirthday: Bool = false {
+        didSet {
+            dobDatePicker.isHidden = !isEditingBirthday
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        employeeType = employee?.employeeType
         updateView()
-        updateSaveButtonState()
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 2 {
+            return isEditingBirthday ? 216.0 : 0.0
+        }
+
+        return 44.0
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.row == 1 {
+            isEditingBirthday = !isEditingBirthday
+
+            dobLabel.textColor = .black
+            dobLabel.text = formatDate(dobDatePicker.date)
+        }
     }
     
     func updateView() {
@@ -27,35 +53,59 @@ class EmployeeDetailTableViewController: UITableViewController, UITextFieldDeleg
             navigationItem.title = employee.name
             nameTextField.text = employee.name
             
-            dobLabel.text = employee.dateOfBirth.formatted(date: .abbreviated, time: .omitted)
-            dobLabel.textColor = .label
-            employeeTypeLabel.text = employee.employeeType.description
-            employeeTypeLabel.textColor = .label
+            dobLabel.text = formatDate(employee.dateOfBirth)
+            dobLabel.textColor = .black
+            dobDatePicker.date = employee.dateOfBirth
+            employeeTypeLabel.text = employee.employeeType.description()
+            employeeTypeLabel.textColor = .black
         } else {
             navigationItem.title = "New Employee"
         }
     }
     
-    private func updateSaveButtonState() {
-        let shouldEnableSaveButton = nameTextField.text?.isEmpty == false
-        saveBarButtonItem.isEnabled = shouldEnableSaveButton
+    func formatDate(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        
+        return dateFormatter.string(from: date)
+    }
+    
+    @IBAction func datePickerValueChanged(_ sender: UIDatePicker) {
+        dobLabel.text = formatDate(dobDatePicker.date)
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        guard let name = nameTextField.text else {
-            return
+        if let name = nameTextField.text,
+            let type = employeeType {
+            
+            employee = Employee(name: name, dateOfBirth: dobDatePicker.date, employeeType: type)
+            performSegue(withIdentifier: PropertyKeys.unwindToListIndentifier, sender: self)
         }
-        
-        let employee = Employee(name: name, dateOfBirth: Date(), employeeType: .exempt)
-        delegate?.employeeDetailTableViewController(self, didSave: employee)
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         employee = nil
+        performSegue(withIdentifier: PropertyKeys.unwindToListIndentifier, sender: self)
     }
-
-    @IBAction func nameTextFieldDidChange(_ sender: UITextField) {
-        updateSaveButtonState()
+    
+    // MARK: - Text Field Delegate
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return false
+    }
+    
+    // MARK: - EmployeeType Delegate
+    func didSelect(employeeType: EmployeeType) {
+        self.employeeType = employeeType
+        employeeTypeLabel.textColor = .black
+        employeeTypeLabel.text = employeeType.description()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let employeeTypeTableViewController = segue.destination as? EmployeeTypeTableViewController else { return }
+        
+        employeeTypeTableViewController.delegate = self
+        employeeTypeTableViewController.employeeType = employeeType
     }
 
 }

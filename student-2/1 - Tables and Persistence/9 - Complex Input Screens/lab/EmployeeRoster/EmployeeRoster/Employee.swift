@@ -1,12 +1,13 @@
-
 import Foundation
 
-enum EmployeeType: CaseIterable, CustomStringConvertible {
+enum EmployeeType {
     case exempt
     case nonExempt
     case partTime
     
-    var description: String {
+    static let all: [EmployeeType] = [.exempt, .nonExempt, .partTime]
+    
+    func description() -> String {
         switch self {
         case .exempt:
             return "Exempt Full Time"
