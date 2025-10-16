@@ -1,10 +1,3 @@
-//
-//  EmojiTableViewController.swift
-//  EmojiDictionary
-//
-//  Created by Ramanjot Singh on 14/08/25.
-//
-
 import UIKit
 
 class EmojiTableViewController: UITableViewController {

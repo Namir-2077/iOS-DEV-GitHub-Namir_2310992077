@@ -25,31 +25,31 @@ class FoodTableViewController: UITableViewController {
         let salad = Food(name: "Italian Salad", description: "Garlic, red onions, tomatoes, mushrooms, and olives on top of romaine lettuce.")
         let linguini = Food(name: "Pesto Linguini", description: "Stewed sliced beef with yellow onions and garlic in a vinegar-soy sauce. Served with steamed jasmine rice and sautéed vegetables.")
         dinner.food = [salad, linguini]
-
+        
         return [breakfast, lunch, dinner]
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return meals.count
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let meal = meals[section]
         
         return meal.food.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "foodCell", for: indexPath)
         let meal = meals[indexPath.section]
@@ -57,12 +57,12 @@ class FoodTableViewController: UITableViewController {
         
         cell.textLabel?.text = food.name
         cell.detailTextLabel?.text = food.description
-
+        
         return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return meals[section].name
     }
-
+    
 }
