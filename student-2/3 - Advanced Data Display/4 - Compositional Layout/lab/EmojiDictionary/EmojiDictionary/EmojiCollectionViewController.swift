@@ -21,6 +21,8 @@ class EmojiCollectionViewController: UICollectionViewController {
         Emoji(symbol: "🏁", name: "Checkered Flag", description: "A black-and-white checkered flag.", usage: "completion")
     ]
     
+    var layout: UICollectionViewLayout?
+    
     private var collectionDataSource: UICollectionViewDiffableDataSource<String, Emoji.ID>!
     private var emojiIdentifiersSnapshot: NSDiffableDataSourceSnapshot<String, Emoji.ID> {
         var snapshot = NSDiffableDataSourceSnapshot<String, Emoji.ID>()
@@ -34,11 +36,56 @@ class EmojiCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureDataSource()
+        
+        layout = generateGridLayout()
+        
+        if let layout = layout {
+            collectionView.collectionViewLayout = layout
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         collectionDataSource.apply(emojiIdentifiersSnapshot, animatingDifferences: true)
+    }
+    
+    func generateGridLayout() -> UICollectionViewLayout {
+        let padding: CGFloat = 20
+        
+        let item = NSCollectionLayoutItem(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .fractionalHeight(1)
+            )
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .fractionalHeight(1/4)
+            ),
+            subitem: item,
+            count: 2
+        )
+                                                       
+        group.interItemSpacing = .fixed(padding)
+                                                       
+        group.contentInsets = NSDirectionalEdgeInsets(
+            top: 0,
+            leading: padding,
+            bottom: 0,
+            trailing: padding
+        )
+                                                       
+        let section = NSCollectionLayoutSection(group: group)
+                                                       
+        section.interGroupSpacing = padding
+                                                       
+        section.contentInsets = NSDirectionalEdgeInsets(
+            top: 0, leading: padding, bottom: 0, trailing: padding
+        )
+                                                       
+        return UICollectionViewCompositionalLayout(section: section)
     }
     
     func configureDataSource() {
