@@ -58,6 +58,11 @@
 			path = Resonance_TrailUITests;
 			sourceTree = "<group>";
 		};
+		3F94B1622EBC5B4700BEBBA6 /* Data Models */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Data Models";
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +97,7 @@
 				3F607EB32EB486BE0022411B /* Resonance_TrailTests */,
 				3F607EBD2EB486BE0022411B /* Resonance_TrailUITests */,
 				3F607E9B2EB486BB0022411B /* Products */,
+				3F94B1622EBC5B4700BEBBA6 /* Data Models */,
 			);
 			sourceTree = "<group>";
 		};
@@ -122,6 +128,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				3F607E9C2EB486BB0022411B /* Resonance_Trail */,
+				3F94B1622EBC5B4700BEBBA6 /* Data Models */,
 			);
 			name = Resonance_Trail;
 			packageProductDependencies = (
